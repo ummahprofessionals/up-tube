@@ -1,4 +1,4 @@
-import { Controller, Get } from '@nestjs/common';
+import { Body, Controller, Get, Post } from '@nestjs/common';
 import { AppService } from './app.service';
 
 @Controller('/api')
@@ -9,4 +9,17 @@ export class AppController {
   exampleMethod() {
     return this.appService.getGreeting();
   }
+
+  @Post()
+  updateMyData(@Body() data: FormData) {
+    return {
+      success: true,
+      message: 'Your data has been successfully updated!',
+    };
+  }
+}
+
+interface FormData {
+  username: string;
+  password: string;
 }
